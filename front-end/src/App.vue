@@ -1,32 +1,50 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+    <el-container>
+      <el-header>
+        <h1 class="title">梦想教室 树洞</h1>
+        <div id="nav">
+          <router-link to="/">首页</router-link>
+          <router-link to="/auth">注册</router-link>
+        </div>
+      </el-header>
+
+      <el-main>
+        <router-view />
+      </el-main>
+    </el-container>
   </div>
 </template>
 
-<style>
+<style lang="scss">
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+a {
+  text-decoration: none;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
-
+.el-header {
+  background-color: antiquewhite;
+  line-height: 60px;
+}
+h1.title {
+  margin: 0;
+  float: left;
+  margin-left: 60px;
+}
 #nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+  float: right;
+  font-size: 1.1em;
+  a {
+    margin-right: 30px;
+  }
 }
 </style>
