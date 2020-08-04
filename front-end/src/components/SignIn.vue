@@ -63,7 +63,7 @@ export default {
       if (this.form.usr != '' && this.form.pwd != '') {
         axios({
           method: 'post',
-          url: process.env.VUE_APP_API_URL + 'auth/signin',
+          url: this.$hostname + 'auth/signin',
           data: params,
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         })

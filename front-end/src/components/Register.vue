@@ -123,7 +123,7 @@ export default {
 
         axios({
           method: 'post',
-          url: process.env.VUE_APP_API_URL + 'auth/register',
+          url: this.$hostname + 'auth/register',
           data: params,
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         })
