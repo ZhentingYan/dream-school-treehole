@@ -18,23 +18,51 @@
         </el-form-item>
       </el-form>
     </div>
+    <PostContainer
+      v-for="item in posts"
+      :key="item.id"
+      :title="item.title"
+      :sender="item.sender"
+      :date="item.date"
+      :desc="item.content"
+    />
   </div>
 </template>
 
 <script>
 import axios from 'axios'
 import checkUsrMixin from '../mixins/checkUsrMixin'
+import PostContainer from '@/components/PostContainer.vue'
 
 export default {
   name: 'Post',
   mixins: [checkUsrMixin],
+  components: {
+    PostContainer,
+  },
   data() {
     return {
       form: {
         title: '',
         content: '',
       },
+      posts: [],
     }
+  },
+  mounted() {
+    let obj = this
+
+    axios
+      .get(this.$hostname + 'post/mine')
+      .then(function(response) {
+        if (obj.checkUsr(response)) {
+          obj.posts = response.data
+          console.log(response.data)
+        }
+      })
+      .catch(function() {
+        obj.$message.error('糟糕，哪里出了点问题！')
+      })
   },
   methods: {
     Send: function() {
@@ -65,15 +93,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#post {
-  padding: 20px 50px;
-
-  .edit-area {
-    background-color: rgb(245, 245, 245);
-    height: 350px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
-    border-radius: 2px;
-    padding: 30px 40px;
-  }
+.edit-area {
+  margin: 30px 10%;
+  margin-bottom: 0;
+  padding: 30px;
+  padding-top: 40px;
+  background-color: rgb(240, 240, 240);
+  height: 350px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
+  border-radius: 2px;
 }
 </style>

@@ -40,3 +40,22 @@ def get_all_post():
         })
 
     return jsonify(responce)
+
+
+@bp.route('/mine', methods=['GET'])
+@login_required
+def get_my_post():
+    POST = get_collection('post')
+    responce = []
+
+    for document in POST.find({'usr': g.usr['_id']}, sort=[('date', -1)]):
+
+        responce.append({
+            'id': str(document['_id']),
+            'title': document['title'],
+            'content': document['content'],
+            'date': document['date'],
+            'sender': g.usr['usr']
+        })
+
+    return jsonify(responce)
