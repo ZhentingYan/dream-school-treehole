@@ -1,4 +1,4 @@
-from flask import Blueprint, request, g
+from flask import Blueprint, request, g, jsonify
 from auth import login_required
 from db import get_collection
 from datetime import datetime
@@ -20,3 +20,23 @@ def new_post():
     POST.insert_one(document)
 
     return 'Success'
+
+
+@bp.route('/all', methods=['GET'])
+def get_all_post():
+    POST = get_collection('post')
+    MEMBER = get_collection('member')
+    responce = []
+
+    for document in POST.find(sort=[('date', -1)]):
+        result = MEMBER.find_one({'_id': document['usr']})
+
+        responce.append({
+            'id': str(document['_id']),
+            'title': document['title'],
+            'content': document['content'],
+            'date': document['date'],
+            'sender': result['usr']
+        })
+
+    return jsonify(responce)

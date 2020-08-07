@@ -1,17 +1,49 @@
 <template>
-  <div class="home">
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div id="home">
+    <PostContainer
+      v-for="item in posts"
+      :key="item.id"
+      :title="item.title"
+      :sender="item.sender"
+      :date="item.date"
+      :desc="item.content"
+    />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import PostContainer from '@/components/PostContainer.vue'
+import axios from 'axios'
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld,
+    PostContainer,
+  },
+  data() {
+    return {
+      posts: [],
+    }
+  },
+  mounted() {
+    let obj = this
+
+    axios
+      .get(this.$hostname + 'post/all')
+      .then(function(response) {
+        obj.posts = response.data
+      })
+      .catch(function() {
+        obj.$message.error('糟糕，哪里出了点问题！')
+      })
   },
 }
 </script>
+
+<style lang="scss" scoped>
+#home {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+</style>
