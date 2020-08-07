@@ -14,7 +14,7 @@ def new_post():
     document = {
         'title': request.form['title'],
         'content': request.form['content'],
-        'usr': str(g.usr['_id']),
+        'usr': g.usr['_id'],
         'date': str(datetime.now())
     }
     POST.insert_one(document)
