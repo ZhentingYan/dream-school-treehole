@@ -67,7 +67,7 @@ import axios from 'axios'
 
 export default {
   data() {
-    var validatePass = (rule, value, callback) => {
+    let validatePass = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请确认您的密码'))
       } else if (value !== this.form.pwd) {
@@ -76,7 +76,7 @@ export default {
         callback()
       }
     }
-    var validate = (rule, value, callback) => {
+    let validate = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('内容不得为空'))
       } else {
@@ -114,7 +114,7 @@ export default {
         this.form.name != ''
       ) {
         let obj = this
-        var params = new URLSearchParams()
+        let params = new URLSearchParams()
         params.append('usr', obj.form.usr)
         params.append('pwd', obj.form.pwd)
         params.append('name', obj.form.name)

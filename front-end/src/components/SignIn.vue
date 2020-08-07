@@ -35,7 +35,7 @@ import axios from 'axios'
 
 export default {
   data() {
-    var validate = (rule, value, callback) => {
+    let validate = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('内容不得为空'))
       } else {
@@ -56,7 +56,7 @@ export default {
   methods: {
     SignIn: function() {
       let obj = this
-      var params = new URLSearchParams()
+      let params = new URLSearchParams()
       params.append('usr', obj.form.usr)
       params.append('pwd', obj.form.pwd)
 
