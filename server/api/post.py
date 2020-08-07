@@ -1,6 +1,7 @@
 from flask import Blueprint, request, g
 from auth import login_required
 from db import get_collection
+from datetime import datetime
 
 bp = Blueprint('post', __name__, url_prefix='/post')
 
@@ -13,7 +14,8 @@ def new_post():
     document = {
         'title': request.form['title'],
         'content': request.form['content'],
-        'usr': str(g.usr['_id'])
+        'usr': str(g.usr['_id']),
+        'date': str(datetime.now())
     }
     POST.insert_one(document)
 
