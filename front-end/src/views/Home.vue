@@ -3,6 +3,7 @@
     <PostContainer
       v-for="item in posts"
       :key="item.id"
+      :id="item.id"
       :title="item.title"
       :sender="item.sender"
       :date="item.date"

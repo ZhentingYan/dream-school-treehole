@@ -16,13 +16,16 @@
 export default {
   name: 'post-container',
   props: {
+    id: String,
     title: String,
     desc: String,
     date: String,
     sender: String,
   },
   methods: {
-    visit() {},
+    visit() {
+      this.$router.push({ name: 'PostDetail', params: { id: this.id } })
+    },
   },
 }
 </script>
