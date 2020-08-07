@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '@/views/Home.vue'
 import Auth from '@/views/Auth.vue'
+import Post from '@/views/Post.vue'
+import PersonInfo from '@/views/PersonInfo.vue'
 
 Vue.use(VueRouter)
 
@@ -18,6 +20,16 @@ export default new VueRouter({
       path: '/auth',
       name: 'Auth',
       component: Auth,
+    },
+    {
+      path: '/post',
+      name: 'Post',
+      component: Post,
+    },
+    {
+      path: '/info',
+      name: 'PersonInfo',
+      component: PersonInfo,
     },
   ],
 })

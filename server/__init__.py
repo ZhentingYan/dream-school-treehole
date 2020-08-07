@@ -13,10 +13,11 @@ def create_app():
     CORS(app, supports_credentials=True)
 
     import db
-    import auth  # , api
+    import auth
+    import api
 
     db.init_app(app)
-    # api.init_app(app)
+    api.init_app(app)
     app.register_blueprint(auth.bp)
 
     return app

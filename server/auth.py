@@ -1,7 +1,5 @@
-import datetime
-import base64
 import functools
-from flask import Blueprint, g, request, session, jsonify, render_template
+from flask import Blueprint, g, request, session, jsonify
 from db import get_collection
 
 # https://flask.palletsprojects.com/en/1.1.x/tutorial/views/
@@ -49,22 +47,23 @@ def sign_in():
 
 @bp.before_app_request
 def load_logged_in_user():
-    usr_id = session.get('usr')
+    if (request.endpoint != 'auth.logout'):
+        usr_id = session.get('usr')
 
-    if usr_id is None:
-        g.usr = None
-    else:
-        MEMBER = get_collection('member')
+        if usr_id is None:
+            g.usr = None
+        else:
+            MEMBER = get_collection('member')
 
-        result = MEMBER.find_one({'usr': usr_id})
-        result.pop('pwd')
-        g.usr = result
+            result = MEMBER.find_one({'usr': usr_id})
+            result.pop('pwd')
+            g.usr = result
 
 
 @bp.route('/logout', methods=['GET'])
 def logout():
     session.clear()
-    return 'Success!'
+    return 'Success'
 
 
 def login_required(view):

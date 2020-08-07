@@ -5,7 +5,8 @@
         <h1 class="title">梦想教室 树洞</h1>
         <div id="nav">
           <router-link to="/">首页</router-link>
-          <router-link to="/auth">注册</router-link>
+          <router-link to="/post">发布</router-link>
+          <router-link to="/info">个人信息</router-link>
         </div>
       </el-header>
 
@@ -17,6 +18,8 @@
 </template>
 
 <style lang="scss">
+$header-height: 60px;
+
 html,
 body {
   padding: 0;
@@ -35,10 +38,13 @@ a {
   background-color: antiquewhite;
   line-height: 60px;
 }
+.el-main {
+  height: calc(100vh - #{$header-height});
+}
 h1.title {
   margin: 0;
   float: left;
-  margin-left: 60px;
+  margin-left: $header-height;
 }
 #nav {
   float: right;
