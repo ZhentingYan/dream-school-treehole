@@ -9,7 +9,10 @@ Vue.use(ElementUI)
 
 Vue.config.productionTip = false
 axios.defaults.withCredentials = true
-Vue.prototype.$hostname = 'http://127.0.0.1:8000/'
+Vue.prototype.$hostname =
+  process.env.NODE_ENV === 'production'
+    ? 'http://116.62.5.198/'
+    : 'http://127.0.0.1:8000/'
 
 new Vue({
   router,
