@@ -23,11 +23,14 @@ def create_app():
     return app
 
 
+def run():
+    app.secret_key = 'production'
+    app.run(host='127.0.0.1', port=8000, debug=False)
+
+
 if __name__ == "__main__":
 
     app = create_app()
     app.secret_key = 'dev'
-    app.env = 'development'
-    app.debug = True
 
-    app.run(host='127.0.0.1', port=8000)
+    app.run(host='127.0.0.1', port=8000, debug=True)
