@@ -1,2 +1,3 @@
 server/templates
 server/static
+.DS_Store
