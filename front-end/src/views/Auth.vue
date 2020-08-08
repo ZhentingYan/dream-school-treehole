@@ -1,9 +1,7 @@
 <template>
   <div class="log">
     <div id="log-session">
-      <div class="image">
-        <img src="@/assets/log.jpeg" alt="log" />
-      </div>
+      <img class="image" src="@/assets/log.png" alt="log" />
       <component :is="logview" @change="change"></component>
     </div>
   </div>
@@ -36,14 +34,15 @@ export default {
 
 <style scoped>
 #log-session {
-  margin-top: 2%;
+  margin-top: 3%;
   margin-left: 7%;
   height: 600px;
   width: 1200px;
-  background-color: rgb(218, 218, 218);
+  background-color: rgb(235, 235, 235);
   box-shadow: 15px 15px 8px rgba(190, 190, 190, 0.1);
 }
 .image {
   float: left;
+  height: 600px;
 }
 </style>

@@ -2,10 +2,12 @@
   <div id="app">
     <el-container>
       <el-header>
-        <h1 class="title">梦想教室 树洞</h1>
+        <img class="logo" src="@/assets/logo.png" alt="logo" />
+        <h1 class="title">梦想教室解忧角</h1>
         <div id="nav">
           <router-link to="/">首页</router-link>
           <router-link to="/post">发布</router-link>
+          <a>心愿单</a>
           <router-link to="/info">个人信息</router-link>
         </div>
       </el-header>
@@ -44,7 +46,6 @@ a {
 h1.title {
   margin: 0;
   float: left;
-  margin-left: $header-height;
 }
 #nav {
   float: right;
@@ -57,5 +58,11 @@ h1.title {
   .router-link-exact-active {
     border-bottom: 3px solid rgb(243, 201, 33);
   }
+}
+.logo {
+  float: left;
+  height: 40px;
+  margin: 10px;
+  margin-left: $header-height;
 }
 </style>

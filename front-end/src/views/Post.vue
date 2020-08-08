@@ -13,6 +13,12 @@
             v-model="form.content"
           />
         </el-form-item>
+        <div class="icon-list">
+          <i class="el-icon-picture" />
+          <i class="el-icon-s-data" />
+          <i class="el-icon-document" />
+          <i class="el-icon-share" />
+        </div>
         <el-form-item class="btn">
           <el-button type="primary" @click="Send">发送</el-button>
         </el-form-item>
@@ -102,5 +108,13 @@ export default {
   height: 350px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
   border-radius: 1px;
+}
+.icon-list {
+  font-size: 1.6em;
+  margin-left: 80px;
+  margin-bottom: 10px;
+  i {
+    margin-right: 5px;
+  }
 }
 </style>
