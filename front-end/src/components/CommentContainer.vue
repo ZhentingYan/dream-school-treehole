@@ -23,12 +23,11 @@ export default {
 
 <style lang="scss" scoped>
 .comment-container {
-  margin: 30px 10%;
+  margin: 30px 0;
   margin-bottom: 0;
   padding: 25px 35px;
   position: relative;
-  width: 80%;
-  height: 200px;
+  height: 150px;
   background-color: rgb(240, 240, 240);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
   border-radius: 1px;

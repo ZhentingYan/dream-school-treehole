@@ -1,12 +1,14 @@
 <template>
   <div id="post-detail">
-    <div class="sender-info">
-      <span class="sender">{{ sender }}</span>
-      <span class="date">{{ date.split(' ')[0] }}</span>
-    </div>
-    <h2>{{ title }}</h2>
-    <div>
-      <p class="content">{{ content }}</p>
+    <div class="post-info">
+      <div class="sender-info">
+        <span class="sender">{{ sender }}</span>
+        <span class="date">{{ date.split(' ')[0] }}</span>
+      </div>
+      <h2>{{ title }}</h2>
+      <div>
+        <p class="content">{{ content }}</p>
+      </div>
     </div>
     <div class="comment">
       <el-form ref="form" :model="form">
@@ -117,29 +119,36 @@ export default {
 
 <style lang="scss" scoped>
 #post-detail {
-  margin: 50px 10%;
-  padding: 30px 30px;
+  margin: 30px 10%;
   width: 80%;
-  background-color: rgb(250, 250, 250);
 }
-.sender-info {
-  font-size: 1em;
-  margin-bottom: 10px;
-  .sender {
-    font-weight: 500;
-    margin-right: 15px;
+.post-info {
+  background-color: rgb(245, 245, 245);
+  padding: 25px 35px;
+  border-radius: 1px;
+  .sender-info {
+    font-size: 1em;
+    margin-bottom: 10px;
+    .sender {
+      font-weight: 500;
+      margin-right: 15px;
+    }
+    .date {
+      color: grey;
+    }
   }
-  .date {
-    color: grey;
+  h2 {
+    margin: 10px 0;
+    padding: 0;
+    font-size: 1.25em;
+    font-weight: 600;
+  }
+  .content {
+    margin-top: 30px;
   }
 }
-h2 {
-  margin: 10px 0;
-  padding: 0;
-  font-size: 1.25em;
-  font-weight: 600;
-}
-.content {
-  margin-top: 30px;
+.comment {
+  padding: 25px 35px;
+  background-color: rgb(245, 245, 245);
 }
 </style>

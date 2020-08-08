@@ -35,7 +35,7 @@ a {
   color: #2c3e50;
 }
 .el-header {
-  background-color: antiquewhite;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.25);
   line-height: 60px;
 }
 .el-main {

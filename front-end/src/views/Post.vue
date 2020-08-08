@@ -101,6 +101,6 @@ export default {
   background-color: rgb(240, 240, 240);
   height: 350px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
-  border-radius: 2px;
+  border-radius: 1px;
 }
 </style>

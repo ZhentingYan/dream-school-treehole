@@ -173,3 +173,10 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+#personinfo {
+  margin: 50px 15%;
+  width: 70%;
+}
+</style>
