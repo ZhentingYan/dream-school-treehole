@@ -51,6 +51,11 @@ h1.title {
   font-size: 1.1em;
   a {
     margin-right: 30px;
+    color: black;
+    font-weight: 500;
+  }
+  .router-link-exact-active {
+    border-bottom: 3px solid rgb(243, 201, 33);
   }
 }
 </style>
