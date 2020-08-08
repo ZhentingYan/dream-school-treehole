@@ -56,9 +56,8 @@ export default {
     axios
       .get(this.$hostname + 'post/mine')
       .then(function(response) {
-        if (obj.checkUsr(response)) {
+        if (obj.checkUsr(response.data)) {
           obj.posts = response.data
-          console.log(response.data)
         }
       })
       .catch(function() {
@@ -79,7 +78,7 @@ export default {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       })
         .then(function(response) {
-          if (obj.checkUsr(response)) {
+          if (obj.checkUsr(response.data)) {
             obj.$message({ message: '发布成功！', type: 'success' })
             obj.form.title = ''
             obj.form.content = ''
