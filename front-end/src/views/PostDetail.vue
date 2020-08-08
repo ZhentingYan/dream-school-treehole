@@ -8,21 +8,53 @@
     <div>
       <p class="content">{{ content }}</p>
     </div>
+    <div class="comment">
+      <el-form ref="form" :model="form">
+        <el-form-item prop="comment">
+          <el-input
+            type="textarea"
+            :autosize="{ minRows: 5 }"
+            placeholder="请输入评论内容"
+            v-model="form.comment"
+          />
+        </el-form-item>
+        <el-form-item class="btn">
+          <el-button type="primary" @click="Send">发布评论</el-button>
+        </el-form-item>
+      </el-form>
+    </div>
+    <CommentContainer
+      v-for="item in comments"
+      :key="item.id"
+      :sender="item.sender"
+      :date="item.date"
+      :content="item.content"
+    />
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import checkUsrMixin from '../mixins/checkUsrMixin'
+import CommentContainer from '@/components/CommentContainer.vue'
 
 export default {
   name: 'post-detail',
+  mixins: [checkUsrMixin],
   data() {
     return {
       sender: '',
       date: '',
       title: '',
       content: '',
+      form: {
+        comment: '',
+      },
+      comments: [],
     }
+  },
+  components: {
+    CommentContainer,
   },
   mounted() {
     let obj = this
@@ -34,7 +66,6 @@ export default {
         },
       })
       .then(function(response) {
-        console.log(response.data)
         obj.sender = response.data.sender
         obj.date = response.data.date
         obj.title = response.data.title
@@ -43,6 +74,43 @@ export default {
       .catch(function() {
         obj.$message.error('糟糕，哪里出了点问题！')
       })
+
+    axios
+      .get(this.$hostname + 'comment/all', {
+        params: {
+          id: obj.$route.params.id,
+        },
+      })
+      .then(function(response) {
+        obj.comments = response.data
+      })
+      .catch(function() {
+        obj.$message.error('糟糕，哪里出了点问题！')
+      })
+  },
+  methods: {
+    Send() {
+      let obj = this
+      let params = new URLSearchParams()
+      params.append('post-id', obj.$route.params.id)
+      params.append('content', obj.form.comment)
+
+      axios({
+        method: 'post',
+        url: this.$hostname + 'comment/new',
+        data: params,
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      })
+        .then(function(response) {
+          if (obj.checkUsr(response.data)) {
+            obj.$message({ message: '发布成功！', type: 'success' })
+            obj.form.comment = ''
+          }
+        })
+        .catch(function() {
+          obj.$message.error('糟糕，哪里出了点问题！')
+        })
+    },
   },
 }
 </script>
