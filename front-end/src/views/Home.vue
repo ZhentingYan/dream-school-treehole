@@ -14,10 +14,12 @@
 
 <script>
 import PostContainer from '@/components/PostContainer.vue'
+import checkUsrMixin from '../mixins/checkUsrMixin'
 import axios from 'axios'
 
 export default {
   name: 'Home',
+  mixins: [checkUsrMixin],
   components: {
     PostContainer,
   },
@@ -32,7 +34,9 @@ export default {
     axios
       .get(this.$hostname + 'post/all')
       .then(function(response) {
-        obj.posts = response.data
+        if (obj.checkUsr(response.data)) {
+          obj.posts = response.data
+        }
       })
       .catch(function() {
         obj.$message.error('糟糕，哪里出了点问题！')

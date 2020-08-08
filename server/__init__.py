@@ -5,6 +5,7 @@ from flask_cors import CORS
 def create_app():
 
     app = Flask(__name__)
+    app.secret_key = 'test'
 
     @app.route('/')
     def home():

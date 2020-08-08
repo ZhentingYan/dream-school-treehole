@@ -24,21 +24,33 @@ def new_post():
 
 
 @bp.route('/all', methods=['GET'])
+@login_required
 def get_all_post():
     POST = get_collection('post')
     MEMBER = get_collection('member')
     responce = []
 
-    for document in POST.find(sort=[('date', -1)]):
-        result = MEMBER.find_one({'_id': document['usr']})
+    if g.usr['role'] == 'volunteer':
+        for document in POST.find(sort=[('date', -1)]):
+            result = MEMBER.find_one({'_id': document['usr']})
 
-        responce.append({
-            'id': str(document['_id']),
-            'title': document['title'],
-            'content': document['content'],
-            'date': document['date'],
-            'sender': result['usr']
-        })
+            responce.append({
+                'id': str(document['_id']),
+                'title': document['title'],
+                'content': document['content'],
+                'date': document['date'],
+                'sender': result['usr']
+            })
+    else:
+        for document in POST.find({'usr': g.usr['_id']}, sort=[('date', -1)]):
+
+            responce.append({
+                'id': str(document['_id']),
+                'title': document['title'],
+                'content': document['content'],
+                'date': document['date'],
+                'sender': g.usr['usr']
+            })
 
     return jsonify(responce)
 
