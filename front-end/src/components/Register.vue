@@ -106,6 +106,14 @@ export default {
   },
   methods: {
     SignUp: function() {
+      if (!this.CheckVolunteer(this.form.role, this.form.number)) {
+        this.$message({
+          message: '请询问管理员有关志愿者的注册流程',
+          type: 'warning',
+        })
+        return
+      }
+
       if (
         this.form.pwd == this.form.pwd2 &&
         this.form.pwd != '' &&
@@ -119,7 +127,7 @@ export default {
         params.append('pwd', obj.form.pwd)
         params.append('name', obj.form.name)
         params.append('role', obj.form.role)
-        params.append('number', obj.form.number)
+        params.append('number', obj.form.number.slice(0, 7))
 
         axios({
           method: 'post',
@@ -142,6 +150,12 @@ export default {
       } else {
         this.$message.error('请确认输入内容全部正确！')
       }
+    },
+    CheckVolunteer(role, stuNum) {
+      // 16527149039
+      if (role == 'student') return true
+      else if (stuNum.length == 11 && stuNum.endsWith('9039')) return true
+      else return false
     },
   },
 }
