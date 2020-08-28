@@ -128,7 +128,6 @@ export default {
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         })
           .then(function(response) {
-            console.log(response)
             if (response.data == 'True') {
               obj.$message({ message: '注册成功！', type: 'success' })
               obj.$emit('change')
