@@ -105,7 +105,7 @@ export default {
     }
   },
   methods: {
-    SignUp: function() {
+    SignUp() {
       if (!this.CheckVolunteer(this.form.role, this.form.number)) {
         this.$message({
           message: '请询问管理员有关志愿者的注册流程',
